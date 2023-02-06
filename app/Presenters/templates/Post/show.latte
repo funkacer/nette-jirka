@@ -1,0 +1,57 @@
+{block content}
+
+<strong n:tag-if="$important"> Dobrý den! </strong>
+
+{if $important}<strong>{/if} Dobrý den! {if $important}</strong>{/if}
+
+<p><a n:href="Homepage:default">← zpět na výpis příspěvků</a></p>
+
+<div class="date">{$post->created_at|date:'F j, Y'}</div>
+
+<h1 n:block="title">{$post->title}</h1>
+
+<div class="post">{$post->content}</div>
+
+<a n:href="Edit:edit $post->id">Upravit příspěvek</a>
+
+<h2>Vložte nový příspěvek</h2>
+
+{control commentForm}
+
+{*
+{foreach $flashes as $flash}
+	<div class="flash {$flash->type}">{$flash->message}</div>
+{/foreach}
+
+<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">
+	{$flash->message}
+</div>
+*}
+
+<ul>
+
+<li n:class="isModuleCurrent('Post') ? active">
+	<a n:href="Post:show $nextid">Další článek</a>
+</li>
+
+<li n:class="isModuleCurrent('Post') ? active">
+    <a n:href="Post:show $previd">Předchozí článek</a>
+</li>
+
+</ul>
+
+<div class="ahoj">Počet příspěvků celkem: {$ahoj}</div>
+
+<h2>Komentáře</h2>
+
+<div class="comments">
+	{foreach $comments as $comment}
+		<p><b><a href="mailto:{$comment->email}" n:tag-if="$comment->email">
+			{$comment->name}
+		</a></b> napsal:</p>
+
+		<div>{$comment->content}</div>
+	{/foreach}
+</div>
+
+{/block}
