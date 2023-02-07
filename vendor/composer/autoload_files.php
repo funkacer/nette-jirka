@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    '2cffec82183ee1cea088009cef9a6fc3' => $vendorDir . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
     'd507e002f7fce7f0c6dbf1f22edcb902' => $vendorDir . '/tracy/tracy/src/Tracy/functions.php',
 );

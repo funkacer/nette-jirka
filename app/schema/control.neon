@@ -1,0 +1,6 @@
+-
+	job: checkDuplicity
+	execute: true
+-
+	job: errorsToXls
+	execute: true

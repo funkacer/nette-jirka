@@ -1,0 +1,279 @@
+-
+	label: typCenyK
+	evidence: cenik
+	fixedValue: true
+	xls: false
+	value: typCeny.bezDph
+	dataType: string
+-
+	label: desetinMj
+	evidence: cenik
+	fixedValue: true
+	xls: false
+	value: 4
+	dataType: integer
+-
+	label: kod0
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C0
+	#value: true#
+	dataType: string
+-
+	label: kod1
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C1
+	#value: true#
+	dataType: string
+-
+	label: nazev
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C2
+	dataType: string
+-
+	label: skupZboz
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C3
+	dataType: relation
+-
+	label: zatrid
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C4
+	dataType: string
+-
+	label: eanKod
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C5
+	dataType: string
+-
+	label: typDphK
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C6
+	values: {
+		0: typSzbDph.dphOsv
+		15: typSzbDph.dphSniz
+		10: typSzbDph.dphSniz2
+		21: typSzbDph.dphZakl
+	}
+	dataType: relation
+-
+	label: mj1
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C7
+	dataType: relation
+-
+	label: cenaZakl
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C8
+	dataType: integer
+-
+	label: poznam
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C9
+	dataType: string
+-
+	label: kodPlu
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C10
+	dataType: string
+-
+	label: stitky
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C11
+	dataType: string
+-
+	label: popis
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C12
+	dataType: valString
+-
+	label: popisA
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C13
+	dataType: valString
+-
+	label: baleniNazev2
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C14
+	dataType: valString
+-
+	label: baleniEan1
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C15
+	dataType: valString
+-
+	label: techParam
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C16
+	dataType: valString
+-
+	label: skladove
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C17
+	#value: true#
+	dataType: boolean
+-
+    label: typZasobyK
+    evidence: cenik
+    fixedValue: false
+    xls: true
+    columnName: C18
+    dataType: string
+-
+	label: vyrobce
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C19
+	dataType: relation
+-
+	label: exportNaEshop
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C20
+	#value: true#
+	dataType: boolean
+# Nomenklatura #
+-
+	label: nomen
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C21
+	dataType: relation
+-
+	label: inEvid
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C22
+	dataType: boolean
+# Hmotnost #
+-
+	label: hmotMj
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C23
+	dataType: integer
+-
+	label: mjHmot
+	evidence: cenik
+	fixedValue: false
+	xls: true
+	columnName: C24
+	dataType: relation
+# Dodavatel #
+-
+	label: firma
+	evidence: dodavatel
+	fixedValue: false
+	xls: true
+	columnName: D1
+	dataType: relation
+-
+	label: kodIndi
+	evidence: dodavatel
+	fixedValue: false
+	xls: false
+	columnName: D2
+	dataType: string
+-
+	label: primarni
+	evidence: dodavatel
+	fixedValue: false
+	xls: true
+	columnName: D3
+	#value: true#
+	dataType: boolean
+-
+	label: nakupCena
+	evidence: dodavatel
+	fixedValue: false
+	xls: true
+	columnName: D4
+	dataType: integer
+-
+	label: mena
+	evidence: dodavatel
+	fixedValue: false
+	xls: true
+	columnName: D5
+	dataType: relation
+# Odberatel #
+-
+	label: prodejCena
+	evidence: odberatel
+	fixedValue: false
+	xls: true
+	columnName: E1
+	dataType: integer
+	poradi: 1
+-
+	label: mena
+	evidence: odberatel
+	fixedValue: false
+	xls: true
+	columnName: E2
+	dataType: relation
+	poradi: 1
+-
+	label: prodejCena
+	evidence: odberatel
+	fixedValue: false
+	xls: true
+	columnName: E3
+	dataType: integer
+	poradi: 2
+-
+	label: mena
+	evidence: odberatel
+	fixedValue: false
+	xls: true
+	columnName: E4
+	dataType: relation
+	poradi: 2
+-
+	label: skupCen
+	evidence: odberatel
+	fixedValue: false
+	xls: true
+	columnName: E5
+	dataType: relation
+	poradi: 2

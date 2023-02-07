@@ -1,2 +1,87 @@
+{block content}
 
+    <div class="text-center" id="link" style="display:none;">
+    	<a href="{$basePath}/temp_files/result.log?down={rand(0,10)}" download target="_blank" class="font-weight-bold"><i class="fas fa-file"></i> result.log</a>
+	</div>
+    <div class="text-center" id="link1" style="display:none;">
+        <a href="{$basePath}/temp_files/duplicity.xlsx?down={rand(0,10)}" download target="_blank" class="font-weight-bold" n:if="$checkDuplicity"><i class="fas fa-file-excel"></i> duplicity.xlsx</a>
+    </div>
+    <div class="text-center" id="link2" style="display:none;">
+        <a href="{$basePath}/temp_files/chyby.xlsx?down={rand(0,10)}" download target="_blank" class="font-weight-bold" n:if="$errorsToXls"><i class="fas fa-file-excel"></i> chyby.xlsx</a>
+    </div>
 
+	<div id="status-bar" class="justify-content-center">
+		<span class="status-minimize ml-2">
+			<a href="#" onclick="minimize();"><i class="fas fa-times"></i></a>
+		</span>
+		<div style="height:100px;">
+			<div id="status-data" class="align-middle" style="text-align:center;"> 
+				<div id="status-work" style="font-weight:bold;">
+				</div>
+				<div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+  					<span class="visually-hidden">Loading...</span>
+				</div>
+				<div class="status-finished text-light" style="display:none;">
+					<i class="fas fa-thumbs-up fa-2x"></i>
+				</div>
+				<div style="font-weight: bold;">
+					<span id="status-percent"></span> %
+				</div>
+				<div style="font-weight: bold;">
+					( dokončeno <span id="status-how-many"></span> )
+				</div>
+		</div>
+		</div>
+	</div>
+	<script>
+		function minimize() {
+			$('#status-bar').toggleClass('status-minimize');
+			$('#status-data').toggle();
+		}
+	</script>
+
+	<script>
+    /*var link = 'https://koralky-skripty.arit.cz/worker/status';*/
+    var link = 'http://localhost/nette-jirka/www/status/status';
+    window.onload = function () {
+        sessionStorage.setItem("runned", false);
+        sendIt();
+        let inter = setInterval(function () {
+            sendIt();
+        }, 5000);
+        function sendIt(runned) {
+            $.ajax({
+                url: link,
+                error: function () {
+
+                },
+                success: function (res) {
+                    let data = JSON.parse(JSON.parse(res));
+                    console.log(data);
+                    if (data.running) {
+                        $('#status-bar').show();
+                        $('.spinner-grow').show();
+                        $('.status-finished').hide();
+                        sessionStorage.setItem("runned", true);
+                    } else {
+                        $('.spinner-grow').hide();
+                        $('.status-finished').show();
+                        if (sessionStorage.getItem("runned")) {
+                            $('#link').show();
+                            $('#link1').show();
+                            $('#link2').show();
+                            sessionStorage.setItem("runned", false);
+                        }
+                    }
+                    $('#status-work').text(data.running === true ? 'Pracuji...' : 'Hotovo');
+                    $('#status-percent').text(data.statusPercent);
+                    $('#status-how-many ').text(data.finished + ' / ' + data.count);
+                    if (data.running === false) {
+                        clearInterval(inter);
+                    }
+                }
+            });
+        }
+    };
+
+</script>

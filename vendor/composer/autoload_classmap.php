@@ -580,6 +580,7 @@ return array(
     'Nette\\Utils\\Type' => $vendorDir . '/nette/utils/src/Utils/Type.php',
     'Nette\\Utils\\UnknownImageFileException' => $vendorDir . '/nette/utils/src/Utils/exceptions.php',
     'Nette\\Utils\\Validators' => $vendorDir . '/nette/utils/src/Utils/Validators.php',
+    'Stringable' => $vendorDir . '/myclabs/php-enum/stubs/Stringable.php',
     'Tester\\Assert' => $vendorDir . '/nette/tester/src/Framework/Assert.php',
     'Tester\\AssertException' => $vendorDir . '/nette/tester/src/Framework/AssertException.php',
     'Tester\\CodeCoverage\\Collector' => $vendorDir . '/nette/tester/src/CodeCoverage/Collector.php',
