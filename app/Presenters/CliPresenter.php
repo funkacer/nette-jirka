@@ -44,12 +44,13 @@ class CliPresenter extends Nette\Application\UI\Presenter {
         $data = json_decode(file_get_contents("temp_files/cenik_temp.json"), TRUE);
         //bdump($data);
         //die(); //timto zobrazim soubor temp_files/cenik_temp.json, ktery se jinak dale smaze
-        $_SESSION['fb-session'] = $data['fb-session'];
-        $_SESSION['fb-company'] = $data['fb-company'];
+        //$_SESSION['fb-session'] = $data['fb-session'];
+        //$_SESSION['fb-company'] = $data['fb-company'];
         unlink("temp_files/cenik_temp.json");
         $res = $this->model->spravaCeniku($data['data']);
         unlink("temp_files/xlsx_temp.xlsx");
         
+        //$this->redirect('Status:default');
         $this->terminate();
     } 
 
