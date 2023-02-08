@@ -1039,6 +1039,16 @@ final class FormModel {
                 
             }
             */
+            $results[] = 'Položku - ' . (!empty($exist) ?
+                        substr($polozka['cenik']['id'], 5) . ' se nepodařilo aktualizovat - ' :
+                        $polozka['cenik']['kod'] . ' se nepodařilo založit - ') ;
+            $errors[$polozka['radek']] = 'Položku - ' . (!empty($exist) ?
+                        substr($polozka['cenik']['id'], 5) . ' se nepodařilo aktualizovat - ' :
+                        $polozka['cenik']['kod'] . ' se nepodařilo založit - ') ;
+            // pro zpomalení
+            for ($i = 0; $i < 100000; $i++) {
+                $a = 1;
+            }
             $finished++;
             $this->updateStatus(true, $count, $finished);
         }

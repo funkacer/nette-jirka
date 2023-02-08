@@ -12,6 +12,15 @@ final class FormPresenter extends Nette\Application\UI\Presenter {
      */
     public $model;
 
+    //public function actionSpravaceniku($session, $url) {
+        public function renderDefault(): void
+    {
+        //$_SESSION['fb-session'] = $session;
+        //$_SESSION['fb-company'] = $this->model->getCompanyFromUrl($url);
+
+        $this->template->fileLink = '/files/sprava_ceniku-template.xlsx';
+    }
+
     protected function createComponentCenik(): \Nette\ComponentModel\Component {
         $form = new \Nette\Application\UI\Form;
         $form->addUpload('file')->setRequired();
@@ -26,6 +35,10 @@ final class FormPresenter extends Nette\Application\UI\Presenter {
         set_time_limit(20000);
         ini_set('memory_limit', '2000M');
         try {
+            $fileStatus = "temp_files/status.json";
+            if (file_exists($fileStatus)) {
+                unlink($fileStatus);
+            }
             $fileErrorsToXls = "temp_files/chyby.xlsx";
             if (file_exists($fileErrorsToXls)) {
                 unlink($fileErrorsToXls);

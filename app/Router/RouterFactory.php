@@ -16,7 +16,7 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 				$router[] = new Nette\Application\Routers\CliRouter(array('action' => 'Cli:spravaceniku'));
-				$router[] = new Nette\Application\Routers\CliRouter(array('action' => 'Status:default'));
+				//$router[] = new Nette\Application\Routers\CliRouter(array('action' => 'Status:default'));
 		$router->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
 		return $router;
 	}
