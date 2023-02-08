@@ -865,8 +865,8 @@ final class FormModel {
         //bdump($schema);
         $indexy = $this->getCenikColumns($schema, $objWorksheet);
 
-        return file_put_contents('temp_files/cenik_temp.json', json_encode(['fb-session' => $_SESSION['fb-session'],
-            'fb-company' => $_SESSION['fb-company'],
+        return file_put_contents('temp_files/cenik_temp.json', json_encode(['fb-session' => "",
+            'fb-company' => "",
             'data' => ($this->getDataCenikFromXls($indexy, $objWorksheet, $schema))]));
     }
 

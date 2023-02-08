@@ -8,7 +8,7 @@ final class StatusPresenter extends Nette\Application\UI\Presenter
 {
     /**
      * @inject
-     * @var \App\Models\StatusModel
+     * @var \App\Models\FormModel
      */
     public $model;
 
