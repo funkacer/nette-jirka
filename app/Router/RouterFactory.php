@@ -15,8 +15,6 @@ final class RouterFactory
 	public static function createRouter(): RouteList
 	{
 		$router = new RouteList;
-				$router[] = new Nette\Application\Routers\CliRouter(array('action' => 'Cli:spravaceniku'));
-				$router[] = new Nette\Application\Routers\CliRouter(array('action' => 'Status:default'));
 		$router->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
 		return $router;
 	}

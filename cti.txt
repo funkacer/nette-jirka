@@ -1,0 +1,48 @@
+Vazeny uzivateli,
+v tomto okamziku jste prihlaseny k vasemu virtualnimu serveru. 
+V okne FTP programu se vam zobrazuji ctyri adresare, kazdy z nich ma vymezenou
+funkci. 
+
+Adresar 'www': 
+ - prostor pro vasi prezentaci na internetu
+ - tento adresar je viditelny z internetu 
+ - soubor s vasi prezentaci by se mel jmenovat 'index.html' (je mozne pouzit
+   i jinou koncovku)
+ - je treba respektovat presne nazvy souboru a adresaru, vcetne velkych a
+    malych pismen
+ - doporucejeme nepouzivat v nazvech souboru a adresaru mezery a pismena
+    s hacky a carkami
+ 
+Adresar 'home': 
+ - prostor pro soubory ktere nebudou videt pres internet
+ - napriklad hesla k zaheslovanym adresarum ci dokumentace stahovana scripty
+   z internetu pres heslo
+ 
+Adresar 'logs':
+ - adresar, ve kterem se archivuji informace o pristupu na vase WWW stranky,
+   nemate prava sem zapisovat
+
+------------------------------------------------------------------------------
+
+Dear user,
+at this moment you are logged to your virtual server. 
+In window of FTP client you can see 4 folders, every of them has its own
+function. 
+
+Folder 'www': 
+ - space for your web presentation on internet
+ - this folder can be seen from internet 
+ - file with your web presentation should be named 'index.html' (it's
+   possible to use different files - .php for example)
+ - it's necessary to respect specific names of files and folder, including
+   capital and small letters
+ - we recommend to use only alphabet letters in file names
+ 
+Folder 'home': 
+ - space for files, that are not seen through internet
+ - for example password for password protected folders, or documentation
+   downloaded by scripts through internet by password protection
+ 
+Folder 'logs':
+ - folder, where information about access on your web presentation are
+   stored. You don't have rights to write to this folder.

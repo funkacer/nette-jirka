@@ -1235,11 +1235,11 @@ final class StatusModel {
     }
 
     public function getSchema() {
-        return \Nette\Neon\Neon::decode(file_get_contents('../app/schema/cenik.neon'));
+        return \Nette\Neon\Neon::decode(file_get_contents('../home/app/schema/cenik.neon'));
     }
 
     public function getControl() {
-        return \Nette\Neon\Neon::decode(file_get_contents('../app/schema/control.neon'));
+        return \Nette\Neon\Neon::decode(file_get_contents('../home/app/schema/control.neon'));
     }
 
     public function getCenikColumns($schema, $objWorksheet) {
