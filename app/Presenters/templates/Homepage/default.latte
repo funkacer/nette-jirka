@@ -1,5 +1,47 @@
 {block content}
-	<h1>Můj blog</h1>
+
+	<div class="funkacer">
+        <ul>
+                {foreach $poleObrazku as $obrazek}
+                    {if $obrazek != "." && $obrazek != ".." && substr($obrazek, strlen($obrazek)-4, 4) == ".png"}
+                        {if substr($obrazek, 0, 2) == "01" || substr($obrazek, 0, 2) == "04" || substr($obrazek, 0, 2) == "07" || substr($obrazek, 0, 2) == "09" || substr($obrazek, 0, 2) == "12"}
+                            <li>
+						{/if}
+                        <img class = 'pismeno' src='./img/{$obrazek}' height = '150px' alt='pismeno'>
+                        {if substr($obrazek, 0, 2) == "03" || substr($obrazek, 0, 2) == "06" || substr($obrazek, 0, 2) == "08" || substr($obrazek, 0, 2) == "11" || substr($obrazek, 0, 2) == "13"}
+                            </li>
+                        {/if}
+                    {/if}
+                {/foreach}
+        </ul>
+    </div>
+
+	<div class="container">
+        <div class="hello">
+            <h1>Fun Kačerujte!</h1>
+			<h2>
+                <ul>
+                    <li>Toto jsou mé testovací stránky.</li>
+                    <li>Kam chcete jít?</li>
+                </ul>
+            </h2>
+        </div>
+    </div>
+
+	<div class="menu">
+        <ul>
+                {foreach $poleThumbnails as $id => $Thumbnail}
+                    <li>
+                    <a href='{$Thumbnail->getReference()}' target = 'blank'>
+                    <strong>{$Thumbnail->getMenu()}</strong>
+                    <br />
+                    {var $picturePath = "./upload/".$Thumbnail->getPicture()}
+                    <img src='{$picturePath}' height = '100px' width = '200px' alt='picture'>
+                    </a>
+                    </li>
+                {/foreach}
+        </ul>
+    </div>
 
 	<a n:href="Form:default">Form presenter</a>
 	<a n:href="Status:default">Status presenter</a>
@@ -21,6 +63,92 @@
 
 	</div>
 
-{/block}
+	<script>
+	let windowWidth = window.innerWidth;
+let letterSize = 150;
+if (windowWidth < 500) {
+    letterSize = 80;
+} else if (windowWidth < 700) {
+    letterSize = 120;
+} else {
+    letterSize = 150;
+}
+
+let elmImgs = document.querySelectorAll(".pismeno");
+
+window.addEventListener("resize", () => {
+    windowWidth = window.innerWidth;
+    //resize just happened, pixels changed
+    if (windowWidth >= 700 && letterSize < 150) {
+        letterSize = 150;
+        for (img of elmImgs) {
+            rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+            img.style.height = rnd + "px";
+        }
+    }
+    else if (windowWidth < 700 && letterSize > 120) {
+        letterSize = 120;
+        for (img of elmImgs) {
+            rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+            img.style.height = rnd + "px";
+        }
+    }
+    else if (windowWidth >= 500 && letterSize < 120) {
+        letterSize = 120;
+        for (img of elmImgs) {
+            rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+            img.style.height = rnd + "px";
+        }
+    }
+    else if (windowWidth < 500 && letterSize > 80) {
+        letterSize = 80;
+        for (img of elmImgs) {
+            rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+            img.style.height = rnd + "px";
+        }
+    }
+});
+
+//na zacatku random vyska pismen
+for (img of elmImgs) {
+    rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+    img.style.height = rnd + "px";
+}
+
+//vyska pismen se zacne menit kazdych 10s
+funkacerInterval = setInterval(() => {
+    for (img of elmImgs) {
+        rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+        img.style.height = rnd + "px";
+    }
+}, 10000);
+
+//pokud chci vybrat polozku, prestanu menit vysku pismen
+let elmLis = document.querySelectorAll(".menu li");
+for (li of elmLis) {
+    li.addEventListener("mouseover", (e) => {
+        clearInterval(funkacerInterval);
+    });
+    li.addEventListener("mouseleave", (e) => {
+        funkacerInterval = setInterval(() => {
+            for (img of elmImgs) {
+                rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+                img.style.height = rnd + "px";
+            }
+        }, 10000);
+    })
+}
+
+//pokud kliknu na .funkacer, chci zmenit vysku pismen
+for (img of elmImgs) {
+    img.addEventListener("mouseover", (e) => {
+        for (img of elmImgs) {
+            rnd = Math.floor(Math.random()*letterSize*1/3 + letterSize*2/3);
+            img.style.height = rnd + "px";
+        }
+    });
+}
+
+	</script>
 
 

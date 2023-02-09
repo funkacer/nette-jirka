@@ -56,7 +56,7 @@
 
                 },
                 success: function (res) {
-                    let data = JSON.parse(JSON.parse(res));
+                    let data = JSON.parse(res);
                     console.log(data);
                     if (data.running) {
                         $('#status-bar').show();
