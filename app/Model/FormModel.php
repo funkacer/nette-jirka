@@ -895,7 +895,7 @@ final class FormModel {
             ]);
             */
             $exist = [];
-            file_put_contents('../log/log.log', json_encode($polozka));
+            //file_put_contents('../log/log.log', json_encode($polozka));
             if (!empty($exist)) {
                 $polozka['cenik']['id'] = 'code:' . $polozka['cenik']['kod'];
                 unset($polozka['cenik']['kod']);

@@ -42,7 +42,8 @@
 
 	<script>
     /*var link = 'https://funkacer.cz/status/status';*/
-    var link = 'http://localhost/nette-jirka/www/status/status';
+    /*var link = 'http://localhost/nette-jirka/www/status/status';*/
+    var link = 'http://localhost:8888/nette-jirka/www/status/status';
     window.onload = function () {
         sessionStorage.setItem("runned", false);
         sendIt();
@@ -75,7 +76,7 @@
                     }
                     $('#status-work').text(data.running === true ? 'Pracuji...' : 'Hotovo');
                     $('#status-percent').text(data.statusPercent);
-                    $('#status-how-many ').text(data.finished + ' / ' + data.count);
+                    $('#status-how-many').text(data.finished + ' / ' + data.count);
                     if (data.running === false) {
                         clearInterval(inter);
                     }
