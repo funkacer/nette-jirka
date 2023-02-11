@@ -41,15 +41,15 @@
 	</script>
 
 	<script>
-    /*var link = 'https://funkacer.cz/status/status';*/
+    var link = 'https://funkacer.cz/status/status';
     /*var link = 'http://localhost/nette-jirka/www/status/status';*/
-    var link = 'http://localhost:8888/nette-jirka/www/status/status';
+    /*var link = 'http://localhost:8888/nette-jirka/www/status/status';*/
     window.onload = function () {
         sessionStorage.setItem("runned", false);
         sendIt();
         let inter = setInterval(function () {
             sendIt();
-        }, 5000);
+        }, 1000);
         function sendIt(runned) {
             $.ajax({
                 url: link,
