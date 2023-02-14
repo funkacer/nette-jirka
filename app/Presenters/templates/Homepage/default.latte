@@ -32,7 +32,7 @@
         <ul>
                 {foreach $poleThumbnails as $id => $Thumbnail}
                     <li>
-                    <a href='{$Thumbnail->getReference()}' target = 'blank'>
+                    <a n:href='{$Thumbnail->getReference()}'>
                     <strong>{$Thumbnail->getMenu()}</strong>
                     <br />
                     {var $picturePath = "./upload/".$Thumbnail->getPicture()}

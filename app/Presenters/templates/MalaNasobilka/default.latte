@@ -1,0 +1,33 @@
+{block content}
+
+<form action="" method="get">
+        <label for="radky">Zadejte počet řádků:</label>
+        <input type="text" name="rows" id="radky">
+        <label for="sloupce">Zadejte počet sloupců:</label>
+        <input type="text" name="cols" id="sloupce">
+        <input type="submit" name="submit" value="Vytvořit tabulku">
+        <hr />
+    </form>
+
+        {if isset($rows) && isset($cols)}
+            {*zde echujeme začátek tabulky*}
+            <table border = '1' cellspacing = '0' cellpadding = '5'>
+
+            //cyklus pro řádky
+            {for $row = 1; $row <= $rows; $row++}
+                <tr>
+                {*cyklus pro sloupce*}
+                {for $column = 1; $column <= $cols; $column++}
+                    {*první sloupec nebo řádek tučně*}
+                    {if $row == 1 || $column == 1}
+                        <td><b>{$row*$column}</b></td>
+                    {else}
+                        <td>{$row*$column}</td>
+                    {/if}
+                {/for}
+                </tr>
+            {/for}
+
+            </table>
+
+        {/if}
