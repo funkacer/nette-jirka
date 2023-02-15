@@ -31,8 +31,13 @@
 	<div class="menu">
         <ul>
                 {foreach $poleThumbnails as $id => $Thumbnail}
+                    {var $url = $Thumbnail->getReference()}
                     <li>
-                    <a n:href='{$Thumbnail->getReference()}'>
+                    {if (substr($url, 0, 5) == 'https')}
+                    <a href='{$url}' target = _blank>
+                    {else}
+                    <a n:href='{$url}'>
+                    {/if}
                     <strong>{$Thumbnail->getMenu()}</strong>
                     <br />
                     {var $picturePath = "./upload/".$Thumbnail->getPicture()}

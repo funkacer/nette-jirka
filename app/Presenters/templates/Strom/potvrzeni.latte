@@ -1,0 +1,30 @@
+{* Latte template *}
+
+{block content}
+
+	<style>
+		input {
+    		margin: 0 10px;
+		}
+	</style>
+
+	<form method="POST" action="">
+
+	<div class='py-5 px-5 shadow d-flex justify-content-center'>
+
+		<h2 n:if="count($idOdPole)==1">Opravdu chcete přenést uzel {$nazevOd} pod {$nazevDo}?</h2>
+		<h2 n:if="count($idOdPole)>1">Opravdu chcete přenést uzly {$nazevOd} pod {$nazevDo}?</h2>
+
+    </div>
+
+	<br><br><br>
+	<div class="row d-flex justify-content-center">
+		<input class="btn btn-success" type="submit" name = "potvrdit-submit" value="Potvrdit">
+        <input class="btn btn-outline-danger" type="submit" name = "potvrdit-cancel" value="Zrušit">
+		<input type = "hidden" value = "{implode(",", $idOdPole)}" name = "idOd">
+		<input type = "hidden" value = "{$idDo}" name = "idDo">
+	</div>
+
+	</form>
+
+	<br><br><br>

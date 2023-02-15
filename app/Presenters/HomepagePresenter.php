@@ -86,7 +86,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 		//https://play.google.com/store/apps/details?id=funkacer.ceskesvatkykalendar
 		$poleThumbnails = [
 			'weather' => new Thumbnail ("weather", "Předpověď počasí", "black", "weather_picture.png", "MalaNasobilka:default", 1),
-			'kalendar' => new Thumbnail ("kalendar", "České svátky kalendář", "black", "app_picture.png", "MalaNasobilka:default", 2),
+			'kalendar' => new Thumbnail ("kalendar", "České svátky kalendář", "black", "app_picture.png", "https://play.google.com/store/apps/details?id=funkacer.ceskesvatkykalendar", 2),
 			'penzion' => new Thumbnail ("penzion", "Prima-penzion", "black", "primapenzion-main.jpg", "MalaNasobilka:default", 3),
 			'prevodnik' => new Thumbnail ("prevodnik", "Převodník teplot", "black", "temp_picture.png", "MalaNasobilka:default", 4),
 			'nasobilka' => new Thumbnail ("nasobilka", "Malá násobilka", "black", "nasobilka_picture.png", "MalaNasobilka:default", 5)
