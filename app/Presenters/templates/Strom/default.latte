@@ -2,8 +2,6 @@
 
 {block content}
 
-	<script src="{$basePath}/js/jquery-3.3.1.js"></script>
-
 	<style>
 		p {
     		margin: 1px 0;
@@ -25,11 +23,23 @@
 						<table class="table table-striped">
 							<tbody class="invoice-data">
 							<tr>
-								<th scope="row">Odkud</th>
+								<th class = "align-middle" scope="row">Odkud</th>
 								<td>
 									<label for="l-search" id = "l-label-search" style = "margin: 0 5px;">Hledat:</label>
 									<input type="text" id="l-search" name="l-search">
-									<a href = "#" id = "l-do-search" style = "margin: 0 5px; padding: 0 5px; background-color: grey; color: white; border-radius: 5px">Hledej</a>
+									<a href = "#" id = "l-do-search" style = "margin: 0 5px; padding: 5px 5px; background-color: lightgreen; border-radius: 5px">Hledej</a>
+								</td>
+								<td class = "align-middle">
+									<label for="l-colors" style = "margin: 0 5px;">Zvýraznění:</label>
+									<select name="l-colors" id="l-colors">
+									<option value="lightgreen">Zelená</option>
+									<option value="lightblue">Modrá</option>
+									<option value="yellow">Žlutá</option>
+									<option value="coral">Červená</option>
+									</select>
+								</td>
+								<td class = "align-middle">
+									<a href = "#" id = "l-reset-search" style = "margin: 0 5px; padding: 5px 5px; background-color: red; border-radius: 5px">Reset</a>
 								</td>
 							</tr>
 							</tbody>
@@ -38,23 +48,19 @@
 						<table class="table table-striped">
 							<tr>
 								<td>
-
 									{foreach $poleUzlu as $cesta => $uzel}
 										<p id = "l{$cesta}" class = "l-sign" style="height: 0; margin: 0; visibility:hidden">
-										<span n:if="$uzel['hasChild']"> <i  class="fas fa-minus" style="color:blue"></i></span>
-										<span n:if="!$uzel['hasChild']"> <i  class="fas fa-minus" style="visibility:hidden"></i></span>
-										{*<span n:if="$uzel['hladina'] == $maxHladina">&nbsp;&nbsp;&nbsp;&nbsp;</span>*}
+										<span n:if="$uzel['hasChild']"><i class="fas fa-minus" style="color:blue"></i></span>
+										<span n:if="!$uzel['hasChild']"><i class="fas fa-minus" style="visibility:hidden"></i></span>
 										{var $i}
 										{for $i; $i < $uzel["hladina"]; $i++ }
 										<span>
 										&nbsp;&nbsp;&nbsp;&nbsp;
 										</span>
 										{/for}
-										{*<label><input type = "radio" name="od" value = "{$uzel["id"]}"> {$uzel["nazev"]}</label>*}
 										<label><input type="checkbox" name="od[]" value="{$uzel["id"]}"> {$uzel["nazev"]}</label>
 										</p>
 									{/foreach}
-
 								</td>
 							</tr>
 						</table>
@@ -65,12 +71,24 @@
 				
 						<table class="table table-striped">
 							<tbody class="invoice-data">
-							<tr >
-								<th scope="row">Kam</th>
-								<td>
+							<tr>
+								<th class = "align-middle" scope="row">Kam</th>
+								<td class = "align-middle">
 									<label for="r-search" id = "r-label-search" style = "margin: 0 5px;">Hledat:</label>
 									<input type="text" id="r-search" name="r-search">
-									<a href = "#" id = "r-do-search" style = "margin: 0 5px; padding: 0 5px; background-color: grey; color: white; border-radius: 5px">Hledej</a>
+									<a href = "#" id = "r-do-search" style = "margin: 0 5px; padding: 5px 5px; background-color: lightgreen; color: white; border-radius: 5px">Hledej</a>
+								</td>
+								<td class = "align-middle">
+									<label for="r-colors" style = "margin: 0 5px;">Zvýraznění:</label>
+									<select name="r-colors" id="r-colors">
+									<option value="lightgreen">Zelená</option>
+									<option value="lightblue">Modrá</option>
+									<option value="yellow">Žlutá</option>
+									<option value="coral">Červená</option>
+									</select>
+								</td>
+								<td class = "align-middle">
+									<a href = "#" id = "l-reset-search" style = "margin: 0 5px; padding: 5px 5px; background-color: red; color: white; border-radius: 5px">Reset</a>
 								</td>
 							</tr>
 							</tbody>
@@ -79,12 +97,10 @@
 						<table class="table table-striped">
 							<tr>
 								<td>
-									
 									{foreach $poleUzlu as $cesta => $uzel}
 										<p id = "r{$cesta}" class = "r-sign" style="height: 0; margin: 0; visibility:hidden">
-										<span n:if="$uzel['hasChild']"> <i  class="fas fa-minus" style="color:blue"></i></span>
-										<span n:if="!$uzel['hasChild']"> <i  class="fas fa-minus" style="visibility:hidden"></i></span>
-										{*<span n:if="$uzel['hladina'] == $maxHladina">&nbsp;&nbsp;&nbsp;&nbsp;</span>*}
+										<span n:if="$uzel['hasChild']"><i class="fas fa-minus" style="color:blue"></i></span>
+										<span n:if="!$uzel['hasChild']"><i class="fas fa-minus" style="visibility:hidden"></i></span>
 										{var $i}
 										{for $i; $i < $uzel["hladina"]; $i++ }
 										<span>
@@ -94,11 +110,9 @@
 										<label><input type = "radio" name="do" value = "{$uzel["id"]}"> {$uzel["nazev"]}</label>
 										</p>
 									{/foreach}
-									
 								</td>
 							</tr>
 						</table>
-					
 				
 			</div>
 
@@ -115,279 +129,135 @@
 
 <script>
 
-	//start logika
-	$('.l-sign').each(function(){
-		//pokud je úroveň do 3 vč. (jedno / je navíc) tak zobraz standardně minus pro možnost složit
-		if (this.id.split("/").length <= 4) {
-			this.style.visibility = "visible";
-			this.style.height = "auto";
-			//margin jako nahore ve style
-			this.style.margin = "1px 0";
-		}
-		//pokud je úroveň nad 3 (jedno / je navíc) tak zobraz + a označ jako složené (toggleClass("plus"))
-		if (this.id.split("/").length >= 4) {
-			$(this).find('i').each(function(){
-				$(this).removeClass("fa-minus");
-				$(this).addClass("fa-plus");
-			});
-			$(this).toggleClass("plus");
-		}
-	});
+	const signs = [".l-sign", ".r-sign"];
+	const searchTriggers = ["#l-do-search", "#r-do-search"];
+	const searchTexts = ["l-search", "r-search"];
+	const searchLabels = ["l-label-search", "r-label-search"];
+	const searchColors = ["#l-colors", "#r-colors"];
 
-	$('.r-sign').each(function(){
-		//pokud je úroveň do 3 vč. (jedno / je navíc) tak zobraz standardně minus pro možnost složit
-		if (this.id.split("/").length <= 4) {
-			this.style.visibility = "visible";
-			this.style.height = "auto";
-			//margin jako nahore ve style
-			this.style.margin = "1px 0";
-		}
-		//pokud je úroveň nad 3 (jedno / je navíc) tak zobraz + a označ jako složené (toggleClass("plus"))
-		if (this.id.split("/").length >= 4) {
-			$(this).find('i').each(function(){
-				$(this).removeClass("fa-minus");
-				$(this).addClass("fa-plus");
-			});
-			$(this).toggleClass("plus");
-		}
-	});
+	for (let indexLeftRight = 0; indexLeftRight < 2; indexLeftRight++) {
 
-	//on click levych <i>
-	$(".l-sign").on("click", (e) => {
-		//plus znamena ze je splacnuty
-		if (!$(e.currentTarget).hasClass("plus")) {
-			$(e.currentTarget).find('i').each(function(){
-				$(this).removeClass("fa-minus");
-				$(this).addClass("fa-plus");
-			});
-			$('.l-sign').each(function(){
-				//console.log(this.id);
-				if (this.id.substr(0, e.currentTarget.id.length) == e.currentTarget.id && this.id != e.currentTarget.id) {
-					this.style.visibility = "hidden";
-					this.style.height = "0";
-					this.style.margin = "0";
-				}
-			});
-			//$("#moje").load(" #moje > *");
-		} else {
-			$(e.currentTarget).find('i').each(function(){
-				$(this).removeClass("fa-plus");
-				$(this).addClass("fa-minus");
-			});
-			var paths = [];
-			//paths.push(e.currentTarget.id);
-			$('.l-sign').each(function(){
-				//console.log(this.id);
-				if (this.id.substr(0, e.currentTarget.id.length) == e.currentTarget.id && this.id != e.currentTarget.id) {
-					makeVisible = true;
-					if ($(this).hasClass("plus")) {
-						if (!paths.includes(this.id)) {
-							paths.push(this.id);
-						}
-					}
-					for (var path of paths) {
-						if (this.id.substr(0, path.length) == path && this.id != path) {
-							makeVisible = false;
-						}
-					}
-					if (makeVisible) {
-						this.style.visibility = "visible";
-						this.style.height = "auto";
-						//margin jako nahore ve style
-						this.style.margin = "1px 0";
-					}
-				}
-			});
-		}
-		$(e.currentTarget).toggleClass("plus");
-		
-	});
+		//start logika
+		$(signs[indexLeftRight]).each(function(){
+			//pokud je úroveň do 3 vč. (jedno / je navíc) tak zobraz standardně minus pro možnost složit
+			if (this.id.split("/").length <= 4) {
+				this.style.visibility = "visible";
+				this.style.height = "auto";
+				//margin jako nahore ve style
+				this.style.margin = "1px 0";
+			}
+			//pokud je úroveň nad 3 (jedno / je navíc) tak zobraz + a označ jako složené (toggleClass("plus"))
+			if (this.id.split("/").length >= 4) {
+				$(this).find('i').each(function(){
+					$(this).removeClass("fa-minus");
+					$(this).addClass("fa-plus");
+				});
+				$(this).toggleClass("plus");
+			}
+		});
 
-	//on click pravych <i>
-	$(".r-sign").on("click", (e) => {
-		//plus znamena ze je splacnuty
-		if (!$(e.currentTarget).hasClass("plus")) {
-			$(e.currentTarget).find('i').each(function(){
-				$(this).removeClass("fa-minus");
-				$(this).addClass("fa-plus");
-			});
-			$('.r-sign').each(function(){
-				//console.log(this.id);
-				if (this.id.substr(0, e.currentTarget.id.length) == e.currentTarget.id && this.id != e.currentTarget.id) {
-					this.style.visibility = "hidden";
-					this.style.height = "0";
-					this.style.margin = "0";
-				}
-			});
-			//$("#moje").load(" #moje > *");
-		} else {
-			$(e.currentTarget).find('i').each(function(){
-				$(this).removeClass("fa-plus");
-				$(this).addClass("fa-minus");
-			});
-			var paths = [];
-			//paths.push(e.currentTarget.id);
-			$('.r-sign').each(function(){
-				//console.log(this.id);
-				if (this.id.substr(0, e.currentTarget.id.length) == e.currentTarget.id && this.id != e.currentTarget.id) {
-					makeVisible = true;
-					if ($(this).hasClass("plus")) {
-						if (!paths.includes(this.id)) {
-							paths.push(this.id);
-						}
-					}
-					for (var path of paths) {
-						if (this.id.substr(0, path.length) == path && this.id != path) {
-							makeVisible = false;
-						}
-					}
-					if (makeVisible) {
-						this.style.visibility = "visible";
-						this.style.height = "auto";
-						//margin jako nahore ve style
-						this.style.margin = "1px 0";
-					}
-				}
-			});
-		}
-		$(e.currentTarget).toggleClass("plus");
-		
-	});
-
-	//levy search
-	$('#l-do-search').on("click", () => {
-		const find = document.getElementById('l-search').value.toLowerCase();
-
-		if (find != "") {
-			var nalezeno = 0;
-
-			var searchPaths = [];
-			$('.l-sign').each(function(){
-				var id = this.id;
-				$(this).find('label').each(function(){
-					var text = this.innerHTML.substr(this.innerHTML.lastIndexOf("> ")+2).toLowerCase();
-					if (text.indexOf(find) > -1) {
-						//console.log(text + id);
-						this.style.backgroundColor = "lightgreen";
-						nalezeno++;
-						if (!searchPaths.includes(id)) {
-							searchPaths.push(id);
-						}
+		//onlick inkony
+		$(signs[indexLeftRight]).each(function(){
+			$(this).find('i').on("click", (e) => {
+			//plus znamena ze je splacnuty
+			const id = this.id
+			//console.log(id);
+			if (!$(this).hasClass("plus")) {
+				$(e.currentTarget).removeClass("fa-minus");
+				$(e.currentTarget).addClass("fa-plus");
+				$(signs[indexLeftRight]).each(function(){
+					//console.log(this.id);
+					if (this.id.substr(0, id.length) == id && this.id != id) {
+						this.style.visibility = "hidden";
+						this.style.height = "0";
+						this.style.margin = "0";
 					}
 				});
-				
-			});
-
-			if (nalezeno) {
-				document.getElementById('l-label-search').innerHTML = "Nalezeno " + nalezeno;
+				//$("#moje").load(" #moje > *");
 			} else {
-				document.getElementById('l-label-search').innerHTML = "Nenalezeno";
-			}
-			//console.log(searchPaths);
-
-			for (var searchPath of searchPaths) {
-				//console.log(searchPath);
-				//this.style.color = "green";
-				$('.l-sign').each(function(){
-					if (searchPath.substr(0, this.id.length) == this.id && searchPath != this.id) {
+				$(e.currentTarget).removeClass("fa-plus");
+				$(e.currentTarget).addClass("fa-minus");
+				let paths = [];
+				//paths.push(e.currentTarget.id);
+				$(signs[indexLeftRight]).each(function(){
+					//console.log(this.id);
+					if (this.id.substr(0, id.length) == id && this.id != id) {
+						makeVisible = true;
 						if ($(this).hasClass("plus")) {
-							$(this).find('i').each(function(){
-								$(this).removeClass("fa-plus");
-								$(this).addClass("fa-minus");
-							});
-							$(this).toggleClass("plus");
+							if (!paths.includes(this.id)) {
+								paths.push(this.id);
+							}
+						}
+						for (let path of paths) {
+							if (this.id.substr(0, path.length) == path && this.id != path) {
+								makeVisible = false;
+							}
+						}
+						if (makeVisible) {
+							this.style.visibility = "visible";
+							this.style.height = "auto";
+							//margin jako nahore ve style
+							this.style.margin = "1px 0";
 						}
 					}
 				});
 			}
-			
-			var paths = [];
-			$('.l-sign').each(function(){
-				//toto by mělo ukázat když má mít rozbalené podsložky ale hrozně zpomaluje
-				makeVisible = true;
-				if ($(this).hasClass("plus")) {
-					if (!paths.includes(this.id)) {
-						paths.push(this.id);
-					}
-				}
-				for (var path of paths) {
-					if (this.id.substr(0, path.length) == path && this.id != path) {
-						makeVisible = false;
-					}
-				}
-				if (makeVisible) {
-					this.style.visibility = "visible";
-					this.style.height = "auto";
-					//margin jako nahore ve style
-					this.style.margin = "1px 0";
-				}
+			$(this).toggleClass("plus");
 			});
-
-		} else {
-			document.getElementById('l-label-search').innerHTML = "Prázdné pole";
-		}
-		
-	});
-
-	//pravy search
-	$('#r-do-search').on("click", () => {
-		const find = document.getElementById('r-search').value.toLowerCase();
-
-		if (find != "") {
-			var nalezeno = 0;
-
-			var searchPaths = [];
-			$('.r-sign').each(function(){
-				var id = this.id;
-				if (id.substr(0,1) == "r") {
+		});
+	
+		//search
+		$(searchTriggers[indexLeftRight]).on("click", () => {
+			const color = document.getElementById(searchTriggers[indexLeftRight].substr(1)).style.backgroundColor
+			const find = document.getElementById(searchTexts[indexLeftRight]).value.toLowerCase();
+			if (find != "") {
+				let nalezeno = 0;
+				let searchPaths = [];
+				$(signs[indexLeftRight]).each(function(){
+					let id = this.id;
 					$(this).find('label').each(function(){
-						var text = this.innerHTML.substr(this.innerHTML.lastIndexOf("> ")+2).toLowerCase();
+						let text = this.innerHTML.substr(this.innerHTML.lastIndexOf("> ")+2).toLowerCase();
 						if (text.indexOf(find) > -1) {
 							//console.log(text + id);
-							this.style.backgroundColor = "lightgreen";
+							this.style.backgroundColor = color;
 							nalezeno++;
 							if (!searchPaths.includes(id)) {
 								searchPaths.push(id);
 							}
 						}
 					});
-				}
-			});
-
-			if (nalezeno) {
-				document.getElementById('r-label-search').innerHTML = "Nalezeno " + nalezeno;
-			} else {
-				document.getElementById('r-label-search').innerHTML = "Nenalezeno";
-			}
-			//console.log(searchPaths);
-
-			for (var searchPath of searchPaths) {
-				//console.log(searchPath);
-				//this.style.color = "green";
-				$('.r-sign').each(function(){
-					if (searchPath.substr(0, this.id.length) == this.id && searchPath != this.id) {
-						if ($(this).hasClass("plus")) {
-							$(this).find('i').each(function(){
-								$(this).removeClass("fa-plus");
-								$(this).addClass("fa-minus");
-							});
-							$(this).toggleClass("plus");
-						}
-					}
 				});
-			}
-			
-			var paths = [];
-			$('.r-sign').each(function(){
-				//toto by mělo ukázat když má mít rozbalené podsložky ale hrozně zpomaluje
-				if (this.id.substr(0, 1) == "r") {
+				if (nalezeno) {
+					document.getElementById(searchLabels[indexLeftRight]).innerHTML = "Nalezeno " + nalezeno;
+				} else {
+					document.getElementById(searchLabels[indexLeftRight]).innerHTML = "Nenalezeno";
+				}
+				//console.log(searchPaths);
+				for (let searchPath of searchPaths) {
+					//console.log(searchPath);
+					//this.style.color = "green";
+					$(signs[indexLeftRight]).each(function(){
+						if (searchPath.substr(0, this.id.length) == this.id && searchPath != this.id) {
+							if ($(this).hasClass("plus")) {
+								$(this).find('i').each(function(){
+									$(this).removeClass("fa-plus");
+									$(this).addClass("fa-minus");
+								});
+								$(this).toggleClass("plus");
+							}
+						}
+					});
+				}
+				let paths = [];
+				$(signs[indexLeftRight]).each(function(){
+					//toto by mělo ukázat když má mít rozbalené podsložky ale hrozně zpomaluje
 					makeVisible = true;
 					if ($(this).hasClass("plus")) {
 						if (!paths.includes(this.id)) {
 							paths.push(this.id);
 						}
 					}
-					for (var path of paths) {
+					for (let path of paths) {
 						if (this.id.substr(0, path.length) == path && this.id != path) {
 							makeVisible = false;
 						}
@@ -398,15 +268,21 @@
 						//margin jako nahore ve style
 						this.style.margin = "1px 0";
 					}
-				}
+				});
+			} else {
+				document.getElementById(searchLabels[indexLeftRight]).innerHTML = "Prázdné pole";
+			}
+		});
+
+		$(searchColors[indexLeftRight]).on("change", (e) => {
+			const color = e.currentTarget.value;
+			$(searchTriggers[indexLeftRight]).each(function(){
+				this.style.backgroundColor = color;
 			});
 
-		} else {
-			document.getElementById('r-label-search').innerHTML = "Prázdné pole";
-		}
-		
-	});
+
+		});
 	
-	
+	}
 	
 </script>
